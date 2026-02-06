@@ -1,0 +1,94 @@
+{
+  "kind": "build_request",
+  "title": "Add Google Play Store publishing guidance and assets for the truck game",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Add a new \"Publish on Google Play\" help section (English) on the Start screen that explains that the current game is a web/PWA app, and outlines the high-level steps to publish it to the Google Play Store (e.g., wrap the PWA as an Android app using Trusted Web Activity, create an AAB, upload to Play Console).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "install on play store please"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Start screen shows an additional help section titled \"Publish on Google Play\" in English.",
+        "The text clearly distinguishes: (1) installing via browser as a PWA vs (2) publishing to Play Store.",
+        "The help section includes a concise step list that mentions generating an Android App Bundle (AAB) and using a Trusted Web Activity wrapper, without requiring users to understand internal code details.",
+        "No existing gameplay UI (Play button, how-to-play instructions) is removed or broken on mobile."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add a repository documentation file that provides a practical, step-by-step checklist for publishing this PWA to the Google Play Store, including: required Play Console items (app listing, screenshots, feature graphic), generating Android wrapper (TWA), creating/signing AAB, Digital Asset Links (assetlinks.json) hosting expectations, testing, and common troubleshooting for release/publishing.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "install on play store please"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new documentation file exists in the repo (e.g., docs/PLAY_STORE_PUBLISHING.md) written in English.",
+        "The doc includes a checklist of required store assets (icon, feature graphic, screenshots) and where to place them in the repo.",
+        "The doc includes guidance on selecting a valid app identifier/domain naming format (5–50 chars, letters/numbers/hyphens only) to avoid validation errors.",
+        "The doc includes at least one troubleshooting section addressing failed build/publish attempts (e.g., missing manifest, missing icons, invalid identifiers)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Ensure the app has the required PWA metadata suitable for packaging/publishing: confirm a web app manifest is present and linked from the HTML entrypoint, includes correct name/short_name, start_url, display, theme/background colors, and includes required icon sizes. If any of these are missing, add/update them and make sure the app still runs normally in the browser.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "install on play store please"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The HTML entrypoint (frontend/index.html) links a web app manifest via <link rel=\"manifest\" ...> (if not already present).",
+        "A web app manifest exists in the frontend public assets and includes at minimum: name, short_name, start_url, display, background_color, theme_color, and icons including 192x192 and 512x512 PNGs.",
+        "The game still loads and plays correctly in a mobile browser after the manifest/icon changes.",
+        "No changes are required in the Motoko backend for these updates."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/immutablePaths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "Keep backend as a single Motoko actor; no additional backend services.",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Actually publishing the app to the Google Play Console from within this codebase (Play Console access and compliance steps are external).",
+    "Implementing native Android-specific gameplay features (e.g., push notifications, GPS, platform APIs).",
+    "Adding third-party authentication beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [
+      "App icon in a bold, simple flat style: a front-facing cartoon truck emblem on a clean background (app-icon.dim_512x512.png)",
+      "App icon small version optimized for readability at small sizes (app-icon-small.dim_192x192.png)",
+      "Google Play feature graphic banner: dynamic road + truck scene, minimal text-free composition (play-feature-graphic.dim_1024x500.png)",
+      "Android phone screenshot-style promotional image: gameplay with HUD visible, portrait layout (play-screenshot-1.dim_1080x1920.png)",
+      "Android phone screenshot-style promotional image: Start screen visible, portrait layout (play-screenshot-2.dim_1080x1920.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

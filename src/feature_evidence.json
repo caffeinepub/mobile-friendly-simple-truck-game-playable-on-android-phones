@@ -1,0 +1,60 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-new-publish-on-google-play-help-section-english-on-the-start-screen-that-explains-that-the-current-game-is-a-web-pwa-app-and-outlines-the-high-level-steps-to-publish-it-to-the-google-play-store-e-g-wrap-the-pwa-as-an-android-app-using-trusted-web-activity-create-an-aab-upload-to-play-console",
+      "featureTitle": "Add a new \"Publish on Google Play\" help section (English) on the Start screen that explains that the current game is a web/PWA app, and outlines the high-level steps to publish it to the Google Play Store (e.g., wrap the PWA as an Android app using Trusted Web Activity, create an AAB, upload to Play Console).",
+      "files": [
+        "frontend/src/game/components/StartScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-repository-documentation-file-that-provides-a-practical-step-by-step-checklist-for-publishing-this-pwa-to-the-google-play-store-including-required-play-console-items-app-listing-screenshots-feature-graphic-generating-android-wrapper-twa-creating-signing-aab-digital-asset-links-assetlinks-json-hosting-expectations-testing-and-common-troubleshooting-for-release-publishing",
+      "featureTitle": "Add a repository documentation file that provides a practical, step-by-step checklist for publishing this PWA to the Google Play Store, including: required Play Console items (app listing, screenshots, feature graphic), generating Android wrapper (TWA), creating/signing AAB, Digital Asset Links (assetlinks.json) hosting expectations, testing, and common troubleshooting for release/publishing.",
+      "files": [
+        "frontend/docs/PLAY_STORE_PUBLISHING.md"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-app-has-the-required-pwa-metadata-suitable-for-packaging-publishing-confirm-a-web-app-manifest-is-present-and-linked-from-the-html-entrypoint-includes-correct-name-short-name-start-url-display-theme-background-colors-and-includes-required-icon-sizes-if-any-of-these-are-missing-add-update-them-and-make-sure-the-app-still-runs-normally-in-the-browser",
+      "featureTitle": "Ensure the app has the required PWA metadata suitable for packaging/publishing: confirm a web app manifest is present and linked from the HTML entrypoint, includes correct name/short_name, start_url, display, theme/background colors, and includes required icon sizes. If any of these are missing, add/update them and make sure the app still runs normally in the browser.",
+      "files": [
+        "frontend/index.html",
+        "frontend/public/manifest.webmanifest"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

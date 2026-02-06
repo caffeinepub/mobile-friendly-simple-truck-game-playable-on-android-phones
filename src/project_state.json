@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Simple truck game for Android phones, with intent to package/publish it as an installable app via Google Play Store (APK/AAB).",
+  "architectural_notes": [
+    "Current build is a mobile web game; to be installable via Play Store it must be wrapped/packaged as an Android app (e.g., WebView/Cordova/Capacitor or Trusted Web Activity) and released as AAB/APK.",
+    "Release/hosting pipeline requires a valid domain/app identifier slug (5–50 characters; only letters, numbers, hyphens; no spaces or symbols like '+')."
+  ],
+  "known_issues": [
+    "Build/packaging attempt failed with error: \"Unable to create your app\" (needs investigation in the build/release pipeline).",
+    "User attempted invalid domain names causing validation errors (spaces/symbols/length)."
+  ],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- App icon in a bold, simple flat style: a front-facing cartoon truck emblem on a clean background (app-icon.dim_512x512.png)\n- App icon small version optimized for readability at small sizes (app-icon-small.dim_192x192.png)\n- Google Play feature graphic banner: dynamic road + truck scene, minimal text-free composition (play-feature-graphic.dim_1024x500.png)\n- Android phone screenshot-style promotional image: gameplay with HUD visible, portrait layout (play-screenshot-1.dim_1080x1920.png)\n- Android phone screenshot-style promotional image: Start screen visible, portrait layout (play-screenshot-2.dim_1080x1920.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-a-simple-mobile-friendly-truck-game-playable-in-a-mobile-browser-on-android-phones-responsive-layout-touch-first-controls-works-in-portrait-and-landscape",
+      "title": "Implement a simple, mobile-friendly truck game playable in a mobile browser on Android phones (responsive layout, touch-first controls, works in portrait and landscape).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-core-gameplay-loop-a-truck-driving-forward-on-a-road-with-simple-steering-left-right-to-avoid-obstacles-include-a-score-that-increases-over-time-or-by-distance-and-a-game-over-state-on-collision",
+      "title": "Create core gameplay loop: a truck driving forward on a road with simple steering (left/right) to avoid obstacles; include a score that increases over time (or by distance) and a game-over state on collision.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-game-screens-and-controls-start-screen-play-in-game-pause-resume-and-game-over-screen-with-restart",
+      "title": "Add basic game screens and controls: Start screen (Play), in-game Pause/Resume, and Game Over screen with Restart.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-coherent-visual-theme-colors-typography-ui-styling-suitable-for-a-casual-truck-game-and-apply-it-consistently-across-menus-hud-and-buttons-avoid-default-un-styled-ui",
+      "title": "Provide a coherent visual theme (colors, typography, UI styling) suitable for a casual truck game and apply it consistently across menus, HUD, and buttons (avoid default/un-styled UI).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-progressive-web-app-pwa-support-so-the-truck-game-can-be-installed-on-android-from-the-browser-add-to-home-screen-install-app-including-a-valid-web-app-manifest-service-worker-for-offline-caching-and-required-icon-assets-wiring",
+      "title": "Add Progressive Web App (PWA) support so the truck game can be installed on Android from the browser (Add to Home screen / Install app), including a valid web app manifest, service worker for offline caching, and required icon assets wiring.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-in-app-english-help-instructions-section-on-the-start-screen-explaining-how-to-install-the-game-on-android-using-the-browser-e-g-chrome-menu-install-app-add-to-home-screen",
+      "title": "Add an in-app English help/instructions section on the Start screen explaining how to install the game on Android using the browser (e.g., Chrome menu → “Install app” / “Add to Home screen”).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-publish-on-google-play-help-section-english-on-the-start-screen-that-explains-that-the-current-game-is-a-web-pwa-app-and-outlines-the-high-level-steps-to-publish-it-to-the-google-play-store-e-g-wrap-the-pwa-as-an-android-app-using-trusted-web-activity-create-an-aab-upload-to-play-console",
+      "title": "Add a new \"Publish on Google Play\" help section (English) on the Start screen that explains that the current game is a web/PWA app, and outlines the high-level steps to publish it to the Google Play Store (e.g., wrap the PWA as an Android app using Trusted Web Activity, create an AAB, upload to Play Console).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-repository-documentation-file-that-provides-a-practical-step-by-step-checklist-for-publishing-this-pwa-to-the-google-play-store-including-required-play-console-items-app-listing-screenshots-feature-graphic-generating-android-wrapper-twa-creating-signing-aab-digital-asset-links-assetlinks-json-hosting-expectations-testing-and-common-troubleshooting-for-release-publishing",
+      "title": "Add a repository documentation file that provides a practical, step-by-step checklist for publishing this PWA to the Google Play Store, including: required Play Console items (app listing, screenshots, feature graphic), generating Android wrapper (TWA), creating/signing AAB, Digital Asset Links (assetlinks.json) hosting expectations, testing, and common troubleshooting for release/publishing.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-app-has-the-required-pwa-metadata-suitable-for-packaging-publishing-confirm-a-web-app-manifest-is-present-and-linked-from-the-html-entrypoint-includes-correct-name-short-name-start-url-display-theme-background-colors-and-includes-required-icon-sizes-if-any-of-these-are-missing-add-update-them-and-make-sure-the-app-still-runs-normally-in-the-browser",
+      "title": "Ensure the app has the required PWA metadata suitable for packaging/publishing: confirm a web app manifest is present and linked from the HTML entrypoint, includes correct name/short_name, start_url, display, theme/background colors, and includes required icon sizes. If any of these are missing, add/update them and make sure the app still runs normally in the browser.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a simple truck game for Android phone.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Package the web-based truck game into an installable Android app and publish it on the Google Play Store (build APK/AAB, store listing, release).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Resolve deployment/domain naming requirements by choosing a valid domain/app identifier (5–50 chars, letters/numbers/hyphens only) for release/hosting and Play Store packaging.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Mobile-friendly simple truck game (playable on Android phones)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

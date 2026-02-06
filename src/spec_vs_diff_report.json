@@ -1,0 +1,50 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T00:04:45.043Z",
+  "summary": "Diff adds Google Play publishing documentation, adds a new “Publish on Google Play” help section to the Start screen, and adds/updates PWA manifest metadata (manifest link in index.html plus a manifest file with required fields and icon sizes). Some requested store asset image files and specific identifier-format guidance are not evidenced in the provided diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-8",
+      "requirement": "Doc includes guidance on selecting a valid app identifier/domain naming format (5–50 chars, letters/numbers/hyphens only) to avoid validation errors.",
+      "reason": "The new doc section shown describes Android package name rules (reverse-domain with periods, lowercase, no hyphens) rather than the requested 5–50 character identifier/domain format limited to letters/numbers/hyphens.",
+      "evidence": [
+        "frontend/docs/PLAY_STORE_PUBLISHING.md"
+      ]
+    },
+    {
+      "requirement": "Provide the required Google Play / PWA asset images (512x512 icon, 192x192 icon, feature graphic 1024x500, two 1080x1920 screenshots) in the repo.",
+      "reason": "The documentation references these files as already generated under `frontend/public/assets/generated/`, and the HTML/manifest reference them, but the diff summary does not show any added PNG asset files, so their presence is not evidenced.",
+      "evidence": [
+        "frontend/docs/PLAY_STORE_PUBLISHING.md",
+        "frontend/public/manifest.webmanifest",
+        "frontend/index.html"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Repository/project metadata tracking changes (project_state.json updates).",
+      "reason": "BuildRequest focuses on Start screen help text, publishing documentation, and PWA metadata/assets; changes to project tracking/state files are not requested.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Added/modified generated summary file `frontend-file-summaries.txt`.",
+      "reason": "Not requested by the BuildRequest requirements (REQ-7/8/9) and appears to be auxiliary documentation/metadata.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.7,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/docs/PLAY_STORE_PUBLISHING.md",
+    "frontend/index.html",
+    "frontend/public/manifest.webmanifest",
+    "frontend/src/game/components/StartScreen.tsx",
+    "project_state.json"
+  ]
+}

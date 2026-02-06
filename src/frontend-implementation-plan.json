@@ -1,0 +1,88 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Google Play publishing guidance + PWA assets/metadata for Truck Rush",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "summary": "Add an English \"Publish on Google Play\" help section to the Start screen explaining PWA install vs Play Store publishing and the high-level publishing steps.",
+      "acceptanceCriteria": [
+        "Start screen shows an additional help section titled \"Publish on Google Play\" in English.",
+        "The text clearly distinguishes: (1) installing via browser as a PWA vs (2) publishing to Play Store.",
+        "The help section includes a concise step list that mentions generating an Android App Bundle (AAB) and using a Trusted Web Activity wrapper, without requiring users to understand internal code details.",
+        "No existing gameplay UI (Play button, how-to-play instructions) is removed or broken on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/game/components/StartScreen.tsx",
+          "operation": "modify",
+          "description": "Add a new help/info section titled \"Publish on Google Play\" (English) below the existing instructions, including a short distinction between PWA installation vs Play Store publishing and a concise step list mentioning Trusted Web Activity (TWA) and generating an Android App Bundle (AAB). Ensure the existing Play button and current instructions remain intact and mobile-friendly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add repo documentation with a step-by-step checklist for publishing this PWA to the Google Play Store, including required Play Console assets, TWA/AAB/signing, Digital Asset Links expectations, testing, and troubleshooting.",
+      "acceptanceCriteria": [
+        "A new documentation file exists in the repo (e.g., docs/PLAY_STORE_PUBLISHING.md) written in English.",
+        "The doc includes a checklist of required store assets (icon, feature graphic, screenshots) and where to place them in the repo.",
+        "The doc includes guidance on selecting a valid app identifier/domain naming format (5–50 chars, letters/numbers/hyphens only) to avoid validation errors.",
+        "The doc includes at least one troubleshooting section addressing failed build/publish attempts (e.g., missing manifest, missing icons, invalid identifiers)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/docs/PLAY_STORE_PUBLISHING.md",
+          "operation": "create",
+          "description": "Create an English, practical step-by-step publishing checklist covering: Play Console setup items (listing, screenshots, feature graphic), required store assets and their expected repo locations (including the generated assets under frontend/public/assets/generated), generating an Android wrapper via Trusted Web Activity (TWA), creating/signing an Android App Bundle (AAB), Digital Asset Links/assetlinks.json hosting expectations, testing guidance, and common troubleshooting (e.g., missing web manifest, missing icons, invalid identifiers)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add/confirm required PWA metadata: manifest linked from the HTML entrypoint with proper fields and required icon sizes, and ensure the app continues to run normally in the browser.",
+      "acceptanceCriteria": [
+        "The HTML entrypoint (frontend/index.html) links a web app manifest via <link rel=\"manifest\" ...> (if not already present).",
+        "A web app manifest exists in the frontend public assets and includes at minimum: name, short_name, start_url, display, background_color, theme_color, and icons including 192x192 and 512x512 PNGs.",
+        "The game still loads and plays correctly in a mobile browser after the manifest/icon changes.",
+        "No changes are required in the Motoko backend for these updates."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Link the web app manifest from the HTML head via a manifest link tag; ensure theme-related metadata is compatible with the manifest changes and does not interfere with loading the React app."
+        },
+        {
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "create",
+          "description": "Add a web app manifest suitable for PWA packaging/publishing, including: name/short_name (Truck Rush), start_url, display, background_color, theme_color, and icons entries pointing to the 192x192 and 512x512 PNGs placed under frontend/public/assets/generated."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-icon.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated PWA/Play Store app icon asset at the specified path (512x512)."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-icon-small.dim_192x192.png",
+          "operation": "create",
+          "description": "Add the generated PWA icon asset at the specified path (192x192) and ensure the manifest references it."
+        },
+        {
+          "path": "frontend/public/assets/generated/play-feature-graphic.dim_1024x500.png",
+          "operation": "create",
+          "description": "Add the generated Google Play feature graphic asset at the specified path for use in Play Console listing assets."
+        },
+        {
+          "path": "frontend/public/assets/generated/play-screenshot-1.dim_1080x1920.png",
+          "operation": "create",
+          "description": "Add the generated Google Play screenshot-style promotional image at the specified path for use in Play Console listing assets."
+        },
+        {
+          "path": "frontend/public/assets/generated/play-screenshot-2.dim_1080x1920.png",
+          "operation": "create",
+          "description": "Add the generated Google Play screenshot-style promotional image at the specified path for use in Play Console listing assets."
+        }
+      ]
+    }
+  ]
+}
