@@ -5,7 +5,7 @@ This guide walks you through publishing this Progressive Web App (PWA) to the Go
 ## Prerequisites
 
 - A Google Play Console developer account ($25 one-time registration fee)
-- Android Studio or command-line Android SDK tools
+- Node.js 14+ and npm installed
 - Java Development Kit (JDK) 11 or higher
 - Your web app deployed and accessible via HTTPS
 
@@ -32,14 +32,32 @@ All required assets are already generated in `frontend/public/assets/generated/`
 
 1. Deploy your app to a production URL with HTTPS enabled
 2. Ensure the web app manifest is accessible at `https://your-domain.com/manifest.webmanifest`
-3. Verify all icons load correctly
+3. Verify all icons load correctly at their paths:
+   - `https://your-domain.com/assets/generated/battle-app-icon-small.dim_192x192.png`
+   - `https://your-domain.com/assets/generated/battle-app-icon.dim_512x512.png`
 4. Test the PWA in Chrome on Android to ensure it works properly
 
-## Step 3: App Identifier
+## Step 3: Current PWA Configuration
 
-Your app uses the following identifier consistently across PWA metadata:
+Your app uses the following PWA metadata values. **Copy these exact values** when setting up your TWA wrapper:
 
-**App ID:** `skylance-royale`
+### App Identity
+- **App ID:** `skylance-royale`
+- **App Name:** `Skylance Royale - Battle Arena Game`
+- **Short Name:** `Skylance Royale`
+- **Description:** `Battle bots in the arena! Eliminate 20 enemies to win in this action-packed mobile battle game.`
+
+### URLs and Paths
+- **Manifest URL:** `/manifest.webmanifest` (full URL: `https://your-domain.com/manifest.webmanifest`)
+- **Start URL:** `/`
+- **Icon 192x192:** `/assets/generated/battle-app-icon-small.dim_192x192.png`
+- **Icon 512x512:** `/assets/generated/battle-app-icon.dim_512x512.png`
+
+### Theme
+- **Theme Color:** `#0f172a` (dark arena background)
+- **Background Color:** `#0f172a`
+
+### Android Package Name
 
 When creating your TWA wrapper, you'll need to choose a package name in reverse domain format:
 
@@ -58,9 +76,7 @@ When creating your TWA wrapper, you'll need to choose a package name in reverse 
 - ❌ `skylance-royale` (hyphens not allowed in package names)
 - ❌ `SKYLANCE ROYALE` (spaces, uppercase)
 
-## Step 4: Create a TWA Wrapper
+## Step 4: Create a Signing Keystore
 
-### Option A: Using Bubblewrap (Recommended for beginners)
-
-Bubblewrap is a command-line tool that generates a TWA project:
+Before building your TWA, create a keystore for signing your app:
 

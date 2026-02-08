@@ -1,13 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Rebrand the app with an original battle game identity (no “Free Fire” references) and deliver a simple, mobile-friendly single-player battle royale style 2D game loop, plus updated PWA/Play Store metadata and docs for Google Play readiness.
+**Goal:** Prepare the existing 2D game PWA for Google Play Store release readiness by enabling Digital Asset Links verification and documenting a complete Trusted Web Activity (TWA) Bubblewrap packaging flow with troubleshooting.
 
 **Planned changes:**
-- Replace all “Free Fire” / “Free Fire India” mentions with an original game name and consistent English-only user-facing text across UI, metadata, and docs.
-- Update PWA identity metadata (manifest.webmanifest and index.html) to use the new app name, slug/id, descriptions, colors (if needed), and correct icon references.
-- Implement a simple single-player “battle royale style” 2D game loop with touch-first controls (portrait/landscape), non-graphic combat, HUD (health + score/kills), enemy/bot spawning, and Start/Pause/Game Over/Win flows.
-- Replace construction-themed gameplay visuals by wiring new, original battle-game art assets from frontend/public/assets/generated (no backend-served images).
-- Update frontend/docs/PLAY_STORE_PUBLISHING.md with the new app name/identifier and the required Play Store listing assets (icon, feature graphic, screenshots) using the new filenames.
+- Add a static `frontend/public/.well-known/assetlinks.json` with valid Digital Asset Links JSON and clear placeholder documentation for the Android package name and SHA-256 signing cert fingerprint.
+- Update `frontend/docs/PLAY_STORE_PUBLISHING.md` with an end-to-end, copy/paste-ready Bubblewrap workflow (install, init, build) including steps to create a keystore and produce a signed release AAB for Play Console upload.
+- Add a troubleshooting section in the publishing doc addressing the exact error message `Unable to create your app`, listing common causes and checks.
+- Verify and align PWA metadata consistency between `frontend/public/manifest.webmanifest` and `frontend/index.html` (names/description/theme color/icon paths), and document the exact current values to use during TWA setup (App ID `skylance-royale`, manifest path `/manifest.webmanifest`, icon paths under `/assets/generated/...`).
+- Include a short TWA readiness checklist in the doc covering HTTPS, manifest URL validity, icon reachability, and `/.well-known/assetlinks.json` reachability.
 
-**User-visible outcome:** Users can install/open the app as a PWA with the new original branding and play a complete single-player battle game on mobile (touch controls, HUD, win/lose, restart), and the project includes updated Play Store publishing documentation and listing assets for release preparation.
+**User-visible outcome:** The deployed game can be verified for a TWA wrapper via `/.well-known/assetlinks.json`, and developers have clear, English, step-by-step instructions to generate a signed release AAB (with troubleshooting) for Google Play Console submission.

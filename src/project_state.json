@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 11,
+  "projectStateVersion": 13,
   "summary": "Project scope shifts from a construction-themed truck/JCB Android game to creating a \"Free Fire India\" style game and launching it on the Google Play Store.",
   "architectural_notes": [
     "Current build is a mobile web game; to be installable via Play Store it must be wrapped/packaged as an Android app (e.g., WebView/Cordova/Capacitor or Trusted Web Activity) and released as AAB/APK.",
@@ -12,7 +12,6 @@
     "User attempted invalid domain names causing validation errors (spaces/symbols/length)."
   ],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Original game app icon with bold emblem-style mark (battle-app-icon.dim_512x512.png)\n- Original game app icon small variant (battle-app-icon-small.dim_192x192.png)\n- Stylized top-down arena background (arena-bg.dim_1920x1080.png)\n- Top-down player character sprite/illustration (player-hero.dim_512x512.png)\n- Top-down enemy/bot character sprite/illustration (enemy-bot.dim_512x512.png)\n- Simple non-graphic projectile or muzzle-flash effect sprite (projectile-effect.dim_256x256.png)\n- Pickups/loot icons set (pickups-set.dim_1024x512.png)\n- Play Store feature graphic (play-feature-graphic.dim_1024x500.png)\n- Play Store screenshot 1 (play-screenshot-1.dim_1080x1920.png)\n- Play Store screenshot 2 (play-screenshot-2.dim_1080x1920.png)",
   "existing_features": [
     {
       "id": "feature-implement-a-simple-mobile-friendly-truck-game-playable-in-a-mobile-browser-on-android-phones-responsive-layout-touch-first-controls-works-in-portrait-and-landscape",
@@ -171,6 +170,30 @@
       "title": "Update Google Play publishing documentation (frontend/docs/PLAY_STORE_PUBLISHING.md) so it reflects the new original game name, identifier, and required listing assets/screenshots for the new game.",
       "reqIds": [
         "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-digital-asset-links-support-by-including-a-static-well-known-assetlinks-json-file-in-the-frontend-public-assets-so-the-deployed-pwa-can-be-verified-for-a-trusted-web-activity-twa-wrapper",
+      "title": "Add Digital Asset Links support by including a static `/.well-known/assetlinks.json` file in the frontend public assets so the deployed PWA can be verified for a Trusted Web Activity (TWA) wrapper.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-docs-play-store-publishing-md-to-include-a-complete-copy-paste-ready-end-to-end-twa-bubblewrap-packaging-flow-for-generating-a-signed-release-aab-and-add-troubleshooting-guidance-for-the-known-packaging-failure-message-unable-to-create-your-app",
+      "title": "Update `frontend/docs/PLAY_STORE_PUBLISHING.md` to include a complete, copy/paste-ready end-to-end TWA (Bubblewrap) packaging flow for generating a signed release AAB, and add troubleshooting guidance for the known packaging failure message \"Unable to create your app\".",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-pwa-metadata-required-for-play-store-twa-packaging-is-internally-consistent-manifest-html-and-document-the-exact-values-to-use-during-twa-setup-app-name-app-id-start-url-manifest-url-and-icon-urls",
+      "title": "Ensure PWA metadata required for Play Store/TWA packaging is internally consistent (manifest + HTML) and document the exact values to use during TWA setup (app name, app id, start_url, manifest URL, and icon URLs).",
+      "reqIds": [
+        "REQ-23"
       ],
       "version": 1
     }

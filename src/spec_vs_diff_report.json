@@ -1,47 +1,48 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T00:04:20.233Z",
-  "summary": "Most requested changes for rebranding to an original battle game name (Skylance Royale), updating PWA metadata, implementing a single-player battle-style game loop, wiring generated assets via /assets/generated paths, and updating Play Store publishing docs appear to be implemented. One leftover reference to \"Free Fire India\" remains in project_state.json based on the diff summary.",
+  "generatedAt": "2026-02-08T00:11:02.800Z",
+  "summary": "REQ-21 appears implemented via a new assetlinks.json with placeholder package name and SHA-256. REQ-23 manifest/index.html consistency appears implemented and the publishing doc includes the requested exact PWA values (per the visible excerpt). For REQ-22, the diff summary claims full Bubblewrap flow + troubleshooting, but the provided doc content is truncated before any Bubblewrap commands/troubleshooting are shown, so those parts cannot be verified from the evidence. The diff also includes substantial unrequested game/theme changes unrelated to Play Store/TWA readiness.",
   "missing_requirements": [
     {
-      "id": "REQ-16",
-      "requirement": "Replace any use of the name \"Free Fire\" / \"Free Fire India\" with an original game name and branding throughout the app (UI copy, metadata, docs).",
-      "reason": "The diff summary shows project_state.json still contains the phrase \"Free Fire India\" in its summary text, which violates the acceptance criterion that no document text contains \"Free Fire\"/\"Free Fire India\".",
+      "id": "REQ-22",
+      "requirement": "Update frontend/docs/PLAY_STORE_PUBLISHING.md to include complete Bubblewrap (install/init/build) commands with placeholders; keystore + signed AAB steps; troubleshooting that explicitly references the error string `Unable to create your app`; and a PWA verification checklist (HTTPS, manifest, icons, assetlinks).",
+      "reason": "The diff summary asserts these sections exist, but the provided truncated content of PLAY_STORE_PUBLISHING.md only shows steps through the beginning of keystore creation and does not include any visible Bubblewrap commands, the exact error string, or the required troubleshooting/checklist content. Cannot confirm implementation from available evidence.",
       "evidence": [
-        "project_state.json"
+        "frontend/docs/PLAY_STORE_PUBLISHING.md (truncated in diff; no Bubblewrap commands/troubleshooting visible)"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added/retained an empty placeholder hook file (useQueries.ts) unrelated to the requested battle game/PWA/Play Store changes.",
-      "reason": "BuildRequest does not ask for introducing placeholder query hooks; this appears to be extra scaffolding not tied to REQ-16–REQ-20.",
+      "description": "Major game/app scope changes introducing/rewriting a battle-royale style game (new BattleGame, useBattleGame, enemies/projectiles, HUD/touch controls, multiple game screens), plus significant styling/theme overhauls (new global CSS color system, Tailwind theme updates, Google Fonts).",
+      "reason": "Not requested by REQ-21/22/23, which are limited to TWA/Digital Asset Links, Play Store publishing documentation, and PWA metadata consistency/documentation.",
       "evidence": [
-        "frontend/src/hooks/useQueries.ts"
+        "frontend-file-summaries.txt (lists extensive modifications/additions: frontend/src/game/BattleGame.tsx, frontend/src/game/useBattleGame.ts, multiple game components, frontend/src/index.css, frontend/tailwind.config.js, etc.)"
+      ]
+    },
+    {
+      "description": "Creation of an unrelated empty placeholder hook file (useQueries.ts).",
+      "reason": "Not requested by REQ-21/22/23 and unrelated to Play Store/TWA packaging readiness.",
+      "evidence": [
+        "frontend-file-summaries.txt (mentions frontend/src/hooks/useQueries.ts as an empty placeholder)"
+      ]
+    },
+    {
+      "description": "Update to project_state.json reflecting a shift in scope to a different game concept and Play Store launch.",
+      "reason": "Not part of the specified requirements (REQ-21/22/23) for TWA packaging readiness and documentation updates.",
+      "evidence": [
+        "project_state.json (truncated; summary indicates scope shift)"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.66,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/docs/PLAY_STORE_PUBLISHING.md",
     "frontend/index.html",
+    "frontend/public/.well-known/assetlinks.json",
     "frontend/public/manifest.webmanifest",
-    "frontend/src/App.tsx",
-    "frontend/src/game/BattleGame.tsx",
-    "frontend/src/game/TruckGame.tsx",
-    "frontend/src/game/components/GameOverScreen.tsx",
-    "frontend/src/game/components/Hud.tsx",
-    "frontend/src/game/components/PauseOverlay.tsx",
-    "frontend/src/game/components/StartScreen.tsx",
-    "frontend/src/game/components/TouchControls.tsx",
-    "frontend/src/game/useBattleGame.ts",
-    "frontend/src/game/useTruckGame.ts",
-    "frontend/src/game/utils/collision.ts",
-    "frontend/src/game/utils/spawn.ts",
-    "frontend/src/index.css",
-    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

@@ -2,16 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-any-use-of-the-name-free-fire-free-fire-india-with-an-original-game-name-and-branding-throughout-the-app-ui-copy-metadata-docs-to-avoid-using-third-party-trademarked-ip-keep-all-user-facing-text-in-english",
-      "featureTitle": "Replace any use of the name \"Free Fire\" / \"Free Fire India\" with an original game name and branding throughout the app (UI copy, metadata, docs) to avoid using third-party/trademarked IP; keep all user-facing text in English.",
+      "featureId": "feature-add-digital-asset-links-support-by-including-a-static-well-known-assetlinks-json-file-in-the-frontend-public-assets-so-the-deployed-pwa-can-be-verified-for-a-trusted-web-activity-twa-wrapper",
+      "featureTitle": "Add Digital Asset Links support by including a static `/.well-known/assetlinks.json` file in the frontend public assets so the deployed PWA can be verified for a Trusted Web Activity (TWA) wrapper.",
       "files": [
-        "frontend/src/game/TruckGame.tsx",
-        "frontend/src/game/components/GameOverScreen.tsx",
-        "frontend/src/game/components/Hud.tsx",
-        "frontend/src/game/components/PauseOverlay.tsx",
-        "frontend/src/game/components/StartScreen.tsx",
-        "frontend/src/game/useTruckGame.ts",
-        "frontend/src/index.css"
+        "frontend/docs/PLAY_STORE_PUBLISHING.md",
+        "frontend/public/.well-known/assetlinks.json"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,79 +16,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-16"
+        "REQ-21"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-pwa-app-identity-metadata-to-match-the-new-original-game-name-including-frontend-public-manifest-webmanifest-id-name-short-name-description-theme-background-colors-if-needed-and-frontend-index-html-title-meta-description-theme-color-icons-references",
-      "featureTitle": "Update PWA/app identity metadata to match the new original game name, including: frontend/public/manifest.webmanifest (id/name/short_name/description/theme/background colors if needed) and frontend/index.html (title/meta description/theme-color/icons references).",
-      "files": [
-        "frontend/index.html",
-        "frontend/public/manifest.webmanifest"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-17"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-simple-mobile-friendly-battle-royale-style-game-loop-single-player-suitable-for-android-browsers-on-screen-touch-controls-a-player-character-that-moves-aims-enemies-bots-that-spawn-a-safe-non-graphic-combat-mechanic-e-g-tap-to-shoot-or-auto-shoot-health-score-kills-and-clear-win-lose-conditions-with-start-pause-game-over-flow-preserved",
-      "featureTitle": "Implement a simple, mobile-friendly \"battle royale style\" game loop (single-player) suitable for Android browsers: on-screen touch controls, a player character that moves/aims, enemies/bots that spawn, a safe non-graphic combat mechanic (e.g., tap-to-shoot or auto-shoot), health, score/kills, and clear Win/Lose conditions, with Start/Pause/Game Over flow preserved.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/game/BattleGame.tsx",
-        "frontend/src/game/components/GameOverScreen.tsx",
-        "frontend/src/game/components/Hud.tsx",
-        "frontend/src/game/components/PauseOverlay.tsx",
-        "frontend/src/game/components/StartScreen.tsx",
-        "frontend/src/game/components/TouchControls.tsx",
-        "frontend/src/game/useBattleGame.ts",
-        "frontend/src/game/utils/collision.ts",
-        "frontend/src/game/utils/spawn.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-18"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-replace-the-current-construction-truck-gameplay-ui-assets-usage-in-the-game-scene-with-new-original-battle-game-art-assets-stored-as-static-files-under-frontend-public-assets-generated-and-wire-them-into-the-new-game-do-not-serve-images-from-the-backend",
-      "featureTitle": "Replace the current construction-truck gameplay UI assets usage in the game scene with new, original battle-game art assets stored as static files under frontend/public/assets/generated, and wire them into the new game (do not serve images from the backend).",
-      "files": [
-        "frontend/src/game/BattleGame.tsx",
-        "frontend/src/game/TruckGame.tsx",
-        "frontend/src/game/useTruckGame.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-19"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-google-play-publishing-documentation-frontend-docs-play-store-publishing-md-so-it-reflects-the-new-original-game-name-identifier-and-required-listing-assets-screenshots-for-the-new-game",
-      "featureTitle": "Update Google Play publishing documentation (frontend/docs/PLAY_STORE_PUBLISHING.md) so it reflects the new original game name, identifier, and required listing assets/screenshots for the new game.",
+      "featureId": "feature-update-frontend-docs-play-store-publishing-md-to-include-a-complete-copy-paste-ready-end-to-end-twa-bubblewrap-packaging-flow-for-generating-a-signed-release-aab-and-add-troubleshooting-guidance-for-the-known-packaging-failure-message-unable-to-create-your-app",
+      "featureTitle": "Update `frontend/docs/PLAY_STORE_PUBLISHING.md` to include a complete, copy/paste-ready end-to-end TWA (Bubblewrap) packaging flow for generating a signed release AAB, and add troubleshooting guidance for the known packaging failure message \"Unable to create your app\".",
       "files": [
         "frontend/docs/PLAY_STORE_PUBLISHING.md"
       ],
@@ -105,7 +34,27 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-20"
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-pwa-metadata-required-for-play-store-twa-packaging-is-internally-consistent-manifest-html-and-document-the-exact-values-to-use-during-twa-setup-app-name-app-id-start-url-manifest-url-and-icon-urls",
+      "featureTitle": "Ensure PWA metadata required for Play Store/TWA packaging is internally consistent (manifest + HTML) and document the exact values to use during TWA setup (app name, app id, start_url, manifest URL, and icon URLs).",
+      "files": [
+        "frontend/docs/PLAY_STORE_PUBLISHING.md",
+        "frontend/index.html",
+        "frontend/public/manifest.webmanifest"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-23"
       ],
       "confidence": "high"
     }

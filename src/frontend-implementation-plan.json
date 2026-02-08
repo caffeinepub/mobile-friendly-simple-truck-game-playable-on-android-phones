@@ -1,227 +1,70 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Skylance Royale (original) PWA battle game rebrand + mobile battle loop",
+  "title": "TWA/Play Store readiness: Digital Asset Links, Bubblewrap packaging docs, and PWA metadata consistency",
   "requirements": [
     {
-      "id": "REQ-16",
-      "summary": "Replace all construction/third-party branding with an original game name and ensure all user-facing text is English.",
+      "id": "REQ-21",
+      "summary": "Add Digital Asset Links verification file for TWA by serving a static /.well-known/assetlinks.json from public assets.",
       "acceptanceCriteria": [
-        "No UI text, document text, HTML title, or manifest fields contain \"Free Fire\" or \"Free Fire India\".",
-        "All user-facing text is in English.",
-        "An original app name and short name are used consistently across the UI and PWA metadata."
+        "A new file exists at `frontend/public/.well-known/assetlinks.json`.",
+        "The file uses valid Digital Asset Links JSON structure (an array of objects with `relation` and `target`).",
+        "The `assetlinks.json` content is clearly marked/documented as requiring the developer’s real Android package name and SHA-256 cert fingerprint before Play Store submission.",
+        "When the app is deployed, `https://<domain>/.well-known/assetlinks.json` is accessible and returns the JSON file."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/game/components/StartScreen.tsx",
+          "path": "frontend/public/.well-known/assetlinks.json",
+          "operation": "create",
+          "description": "Create a valid Digital Asset Links JSON array granting TWA handling to an Android app, using clearly labeled placeholder values for `package_name` and `sha256_cert_fingerprints` that must be replaced with the real Android package name and SHA-256 signing cert fingerprint before Play Store submission."
+        },
+        {
+          "path": "frontend/docs/PLAY_STORE_PUBLISHING.md",
           "operation": "modify",
-          "description": "Update all user-facing copy from construction/truck theme to original battle-game branding (use new name \"Skylance Royale\"), and keep all text in English. Use shadcn-ui Button for CTAs (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/PauseOverlay.tsx",
-          "operation": "modify",
-          "description": "Replace construction-themed pause text/icon usage with original battle-game wording and keep all text in English. Use shadcn-ui Button for Resume (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/GameOverScreen.tsx",
-          "operation": "modify",
-          "description": "Replace collision/construction messaging with battle-game Lose/Win messaging (non-graphic), keep all text in English, and align restart CTA copy. Use shadcn-ui Button for Restart (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/Hud.tsx",
-          "operation": "modify",
-          "description": "Update HUD labels from construction theme to battle HUD labels (Health, Kills/Score) while keeping English-only UI. Use shadcn-ui Button for Pause where applicable (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/TruckGame.tsx",
-          "operation": "rename",
-          "description": "Rename to reflect original battle-game naming (e.g., BattleGame) and remove construction-specific naming from exported component."
-        },
-        {
-          "path": "frontend/src/game/useTruckGame.ts",
-          "operation": "rename",
-          "description": "Rename hook to reflect battle-game loop (e.g., useBattleGame) and remove construction-specific naming from exported symbols."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Retheme global variables and utility class names/usages away from construction-specific naming/visuals toward an original battle/arena theme while keeping the existing global styling entry point."
+          "description": "Document how `/.well-known/assetlinks.json` is served from `frontend/public/.well-known/assetlinks.json`, and add guidance for updating the placeholders with the real package name and SHA-256 fingerprint and verifying the URL is publicly reachable over HTTPS."
         }
       ]
     },
     {
-      "id": "REQ-17",
-      "summary": "Update PWA identity metadata (manifest + index.html) to match the new original game name, icons, and description.",
+      "id": "REQ-22",
+      "summary": "Expand Play Store publishing documentation with a complete Bubblewrap (TWA) release AAB flow and targeted troubleshooting for the \"Unable to create your app\" packaging failure.",
       "acceptanceCriteria": [
-        "manifest.webmanifest id is a valid slug (5–50 chars; letters/numbers/hyphens only) and matches the chosen app identifier across the project.",
-        "index.html title and meta description match the new game name and description.",
-        "The app still loads and is installable as a PWA in Chrome on Android (manifest detected, icons load)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/manifest.webmanifest",
-          "operation": "modify",
-          "description": "Update manifest identity to original game branding: set id to \"skylance-royale\"; update name/short_name/description; update theme/background colors if needed; and update icon src references to frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png and frontend/public/assets/generated/battle-app-icon.dim_512x512.png."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Update HTML title and meta description to \"Skylance Royale\" branding; update theme-color if needed; and update icon/apple-touch-icon references to frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png and frontend/public/assets/generated/battle-app-icon.dim_512x512.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/battle-app-icon.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated original app icon asset (512x512) at the exact required path: frontend/public/assets/generated/battle-app-icon.dim_512x512.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png",
-          "operation": "create",
-          "description": "Add the generated original small app icon asset (192x192) at the exact required path: frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png."
-        }
-      ]
-    },
-    {
-      "id": "REQ-18",
-      "summary": "Implement a simple, mobile-friendly 2D game battle royale-style single-player loop with touch controls, bots, non-graphic combat, HUD, and Start/Pause/Game Over/Win flow.",
-      "acceptanceCriteria": [
-        "Game is playable end-to-end on mobile: Start -> Playing -> Pause/Resume -> Game Over/Win -> Restart.",
-        "Touch-first controls work in portrait and landscape.",
-        "Combat is non-graphic and appropriate for a broad audience (no gore).",
-        "HUD shows at minimum: health and score (or kills).",
-        "The game maintains stable performance on mid-range Android devices (no obvious runaway spawning or UI freezing during a 2-minute run)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/game/BattleGame.tsx",
-          "operation": "create",
-          "description": "Create the main 2D game scene component for the battle-game loop: renders arena background, player, enemies/bots, projectiles/effects, overlays (Start/Pause/Game Over/Win), and mobile HUD; uses static assets under frontend/public/assets/generated. Use shadcn-ui Button-based overlays/CTAs (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/useBattleGame.ts",
-          "operation": "create",
-          "description": "Create the core single-player game loop hook (requestAnimationFrame): touch-driven movement/aim/shoot (or auto-shoot), bot spawning with caps, health system, kills/score tracking, and deterministic Win/Lose conditions; include pause/resume/restart state handling; avoid runaway spawning for mobile performance."
-        },
-        {
-          "path": "frontend/src/game/components/TouchControls.tsx",
-          "operation": "modify",
-          "description": "Replace lane buttons with touch-first battle controls suitable for portrait and landscape (e.g., virtual joystick for movement + fire/aim control or tap-to-shoot). Use shadcn-ui Button where appropriate for touch controls (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/Hud.tsx",
-          "operation": "modify",
-          "description": "Update HUD to display at minimum Health and Kills/Score; keep Pause control; ensure mobile readability. Use shadcn-ui Button for Pause control (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/StartScreen.tsx",
-          "operation": "modify",
-          "description": "Update Start screen instructions for the new battle loop (movement, aiming/shooting, goal to win); preserve Start button flow. Use shadcn-ui Button for Start (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/PauseOverlay.tsx",
-          "operation": "modify",
-          "description": "Ensure Pause overlay works with new game state (Pause -> Resume) and uses neutral battle-theme copy. Use shadcn-ui Button for Resume (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/components/GameOverScreen.tsx",
-          "operation": "modify",
-          "description": "Support both Lose and Win outcomes with clear non-graphic messaging and a Restart CTA; show final kills/score. Use shadcn-ui Button for Restart (Verify the component's usage instructions before implementing.)"
-        },
-        {
-          "path": "frontend/src/game/utils/collision.ts",
-          "operation": "modify",
-          "description": "Replace lane/vertical collision checks with simple top-down 2D hit detection appropriate for player/enemy/projectile interactions in the new battle loop."
-        },
-        {
-          "path": "frontend/src/game/utils/spawn.ts",
-          "operation": "modify",
-          "description": "Replace obstacle spawning logic with bot/pickup spawning logic including rate limiting and caps for stable mobile performance."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wire the new BattleGame component into the app root (replace TruckGame import/usage) so the game is reachable and not orphaned."
-        }
-      ]
-    },
-    {
-      "id": "REQ-19",
-      "summary": "Replace construction-truck gameplay assets with new original battle-game art under frontend/public/assets/generated and wire them into the new game scene.",
-      "acceptanceCriteria": [
-        "All new images are located under frontend/public/assets/generated and referenced via /assets/generated/... paths.",
-        "No image assets are served or fetched from the Motoko backend.",
-        "The game does not reference construction-specific generated images for its primary gameplay visuals."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/arena-bg.dim_1920x1080.png",
-          "operation": "create",
-          "description": "Add the generated stylized top-down arena background at frontend/public/assets/generated/arena-bg.dim_1920x1080.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/player-hero.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated top-down player character art at frontend/public/assets/generated/player-hero.dim_512x512.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/enemy-bot.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated top-down enemy/bot art at frontend/public/assets/generated/enemy-bot.dim_512x512.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/projectile-effect.dim_256x256.png",
-          "operation": "create",
-          "description": "Add the generated non-graphic projectile/effect sprite at frontend/public/assets/generated/projectile-effect.dim_256x256.png."
-        },
-        {
-          "path": "frontend/public/assets/generated/pickups-set.dim_1024x512.png",
-          "operation": "create",
-          "description": "Add the generated pickups/loot icons set at frontend/public/assets/generated/pickups-set.dim_1024x512.png."
-        },
-        {
-          "path": "frontend/src/game/BattleGame.tsx",
-          "operation": "modify",
-          "description": "Wire the new art assets into the game scene as static references: use frontend/public/assets/generated/arena-bg.dim_1920x1080.png, player-hero.dim_512x512.png, enemy-bot.dim_512x512.png, projectile-effect.dim_256x256.png, and pickups-set.dim_1024x512.png; ensure no references remain to construction-bg.dim_1920x1080.png, truck-hq.dim_1024x512.png, cones-barriers-set.dim_1024x512.png, jcb-excavator-hq.dim_1024x512.png, dumffer-police.dim_1024x512.png, mafia-*.png."
-        },
-        {
-          "path": "frontend/src/game/TruckGame.tsx",
-          "operation": "delete",
-          "description": "Remove the old construction-truck game scene implementation after BattleGame is fully wired to prevent accidental construction asset usage."
-        },
-        {
-          "path": "frontend/src/game/useTruckGame.ts",
-          "operation": "delete",
-          "description": "Remove the old construction-truck game loop hook after useBattleGame is in place to prevent construction behavior/asset references."
-        }
-      ]
-    },
-    {
-      "id": "REQ-20",
-      "summary": "Update Google Play publishing documentation to reflect the new original game name, identifier, and listing assets/screenshots.",
-      "acceptanceCriteria": [
-        "The doc no longer refers to \"Construction Rush\" or construction-specific identifiers.",
-        "The doc includes the updated App ID/slug and describes the same TWA-based Play Store flow for this app.",
-        "The doc lists the new required Play Store assets (icon, feature graphic, screenshots) using the new filenames produced in this change request."
+        "`frontend/docs/PLAY_STORE_PUBLISHING.md` contains complete Bubblewrap command examples (install, init, build) with placeholders for package name, host URL, and signing info.",
+        "The markdown renders correctly (no broken/unclosed code fences) and includes steps for creating a keystore and producing a signed AAB for Play Console upload.",
+        "The doc includes a troubleshooting section that explicitly references and addresses the error string: `Unable to create your app` (common causes and what to check).",
+        "The doc includes a short checklist verifying the deployed PWA requirements used by TWA: HTTPS, valid manifest URL, icons reachable, and `/.well-known/assetlinks.json` reachable."
       ],
       "file_operations": [
         {
           "path": "frontend/docs/PLAY_STORE_PUBLISHING.md",
           "operation": "modify",
-          "description": "Update documentation to the new original game branding (Skylance Royale) and App ID slug (skylance-royale); keep the same TWA-based publishing flow; replace all construction-specific references; and list required assets using the new filenames: frontend/public/assets/generated/battle-app-icon.dim_512x512.png, frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png, frontend/public/assets/generated/play-feature-graphic.dim_1024x500.png, frontend/public/assets/generated/play-screenshot-1.dim_1080x1920.png, frontend/public/assets/generated/play-screenshot-2.dim_1080x1920.png."
+          "description": "Rewrite/complete the guide to include an end-to-end, copy/paste-ready Bubblewrap flow (install, init, build) with placeholders for host URL, applicationId/package name, and signing configuration; add keystore creation + signed release AAB production steps; add a troubleshooting section explicitly referencing the exact error string `Unable to create your app` with common causes (unreachable manifest/icons, HTTP/redirect issues, asset links mismatch, incorrect package/fingerprint) and checks; ensure all code fences are closed and all added/edited text is in English."
+        }
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "summary": "Align and document the exact PWA metadata values used for TWA setup (manifest + HTML consistency and copy/paste-ready values).",
+      "acceptanceCriteria": [
+        "`frontend/public/manifest.webmanifest` and `frontend/index.html` are consistent for app name/description/theme color and icon references (no mismatched filenames/paths).",
+        "The Play Store publishing doc lists the exact current PWA values (App ID `skylance-royale`, manifest path `/manifest.webmanifest`, icon paths under `/assets/generated/...`) so they can be copied into Bubblewrap/Android Studio without guesswork.",
+        "All user-facing text added/edited by this change is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update HTML metadata to be internally consistent with `frontend/public/manifest.webmanifest` (e.g., align the document title/app name text and confirm theme color/description/icon link paths match the manifest references)."
         },
         {
-          "path": "frontend/public/assets/generated/play-feature-graphic.dim_1024x500.png",
-          "operation": "create",
-          "description": "Add the generated Play Store feature graphic at frontend/public/assets/generated/play-feature-graphic.dim_1024x500.png (new battle-game listing art)."
+          "path": "frontend/public/manifest.webmanifest",
+          "operation": "modify",
+          "description": "Verify and, if needed, adjust manifest fields so they remain consistent with `frontend/index.html` (app name/description/theme color and icon paths), without changing the established App ID `skylance-royale` unless explicitly required by the BuildRequest."
         },
         {
-          "path": "frontend/public/assets/generated/play-screenshot-1.dim_1080x1920.png",
-          "operation": "create",
-          "description": "Add the generated Play Store screenshot 1 at frontend/public/assets/generated/play-screenshot-1.dim_1080x1920.png (new battle-game listing art)."
-        },
-        {
-          "path": "frontend/public/assets/generated/play-screenshot-2.dim_1080x1920.png",
-          "operation": "create",
-          "description": "Add the generated Play Store screenshot 2 at frontend/public/assets/generated/play-screenshot-2.dim_1080x1920.png (new battle-game listing art)."
+          "path": "frontend/docs/PLAY_STORE_PUBLISHING.md",
+          "operation": "modify",
+          "description": "Add a dedicated section listing the exact current PWA values to copy into Bubblewrap/TWA setup (App name, App ID `skylance-royale`, `start_url` value, manifest URL `/manifest.webmanifest`, and icon URLs pointing to `frontend/public/assets/generated/battle-app-icon-small.dim_192x192.png` and `frontend/public/assets/generated/battle-app-icon.dim_512x512.png`), and keep all added/edited user-facing text in English."
         }
       ]
     }

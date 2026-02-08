@@ -1,12 +1,12 @@
 {
   "id": "skylance-royale",
-  "name": "Skylance Royale - Battle Arena",
+  "name": "Skylance Royale - Battle Arena Game",
   "short_name": "Skylance Royale",
   "description": "Battle bots in the arena! Eliminate 20 enemies to win in this action-packed mobile battle game.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
-  "theme_color": "#3b82f6",
+  "theme_color": "#0f172a",
   "orientation": "any",
   "icons": [
     {
