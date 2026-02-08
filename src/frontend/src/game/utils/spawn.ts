@@ -1,34 +1,53 @@
-import type { Obstacle } from '../useTruckGame';
+import type { Enemy, PlayerPosition } from '../useBattleGame';
 
-export function shouldSpawnObstacle(
+export function shouldSpawnEnemy(
   timeSinceLastSpawn: number,
   spawnInterval: number
 ): boolean {
   return timeSinceLastSpawn >= spawnInterval;
 }
 
-export function generateObstacle(
+export function generateEnemy(
   id: number,
-  existingObstacles: Obstacle[]
-): Obstacle | null {
-  // Get available lanes (avoid spawning on top of recent obstacles)
-  const recentObstacles = existingObstacles.filter((obs) => obs.position < 30);
-  const occupiedLanes = new Set(recentObstacles.map((obs) => obs.lane));
+  playerPosition: PlayerPosition
+): Enemy | null {
+  // Spawn enemies at random edges of the arena, away from player
+  const edge = Math.floor(Math.random() * 4);
+  let x: number, y: number;
   
-  const availableLanes = [0, 1, 2].filter((lane) => !occupiedLanes.has(lane));
-  
-  if (availableLanes.length === 0) {
-    // All lanes occupied, pick random lane anyway
-    const lane = Math.floor(Math.random() * 3);
-    return { id, lane, position: -10 };
+  switch (edge) {
+    case 0: // Top
+      x = Math.random() * 80 + 10;
+      y = 5;
+      break;
+    case 1: // Right
+      x = 95;
+      y = Math.random() * 80 + 10;
+      break;
+    case 2: // Bottom
+      x = Math.random() * 80 + 10;
+      y = 95;
+      break;
+    case 3: // Left
+      x = 5;
+      y = Math.random() * 80 + 10;
+      break;
+    default:
+      x = 50;
+      y = 5;
   }
-
-  // Pick random available lane
-  const lane = availableLanes[Math.floor(Math.random() * availableLanes.length)];
+  
+  // Don't spawn too close to player
+  const dist = Math.sqrt(Math.pow(x - playerPosition.x, 2) + Math.pow(y - playerPosition.y, 2));
+  if (dist < 20) {
+    return null;
+  }
   
   return {
     id,
-    lane,
-    position: -10, // Start above screen
+    x,
+    y,
+    health: 100,
+    speed: 0.5 + Math.random() * 0.5,
   };
 }

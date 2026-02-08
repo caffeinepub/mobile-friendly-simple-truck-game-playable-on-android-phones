@@ -2,10 +2,16 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-new-publish-on-google-play-help-section-english-on-the-start-screen-that-explains-that-the-current-game-is-a-web-pwa-app-and-outlines-the-high-level-steps-to-publish-it-to-the-google-play-store-e-g-wrap-the-pwa-as-an-android-app-using-trusted-web-activity-create-an-aab-upload-to-play-console",
-      "featureTitle": "Add a new \"Publish on Google Play\" help section (English) on the Start screen that explains that the current game is a web/PWA app, and outlines the high-level steps to publish it to the Google Play Store (e.g., wrap the PWA as an Android app using Trusted Web Activity, create an AAB, upload to Play Console).",
+      "featureId": "feature-replace-any-use-of-the-name-free-fire-free-fire-india-with-an-original-game-name-and-branding-throughout-the-app-ui-copy-metadata-docs-to-avoid-using-third-party-trademarked-ip-keep-all-user-facing-text-in-english",
+      "featureTitle": "Replace any use of the name \"Free Fire\" / \"Free Fire India\" with an original game name and branding throughout the app (UI copy, metadata, docs) to avoid using third-party/trademarked IP; keep all user-facing text in English.",
       "files": [
-        "frontend/src/game/components/StartScreen.tsx"
+        "frontend/src/game/TruckGame.tsx",
+        "frontend/src/game/components/GameOverScreen.tsx",
+        "frontend/src/game/components/Hud.tsx",
+        "frontend/src/game/components/PauseOverlay.tsx",
+        "frontend/src/game/components/StartScreen.tsx",
+        "frontend/src/game/useTruckGame.ts",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,31 +21,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-7"
+        "REQ-16"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-repository-documentation-file-that-provides-a-practical-step-by-step-checklist-for-publishing-this-pwa-to-the-google-play-store-including-required-play-console-items-app-listing-screenshots-feature-graphic-generating-android-wrapper-twa-creating-signing-aab-digital-asset-links-assetlinks-json-hosting-expectations-testing-and-common-troubleshooting-for-release-publishing",
-      "featureTitle": "Add a repository documentation file that provides a practical, step-by-step checklist for publishing this PWA to the Google Play Store, including: required Play Console items (app listing, screenshots, feature graphic), generating Android wrapper (TWA), creating/signing AAB, Digital Asset Links (assetlinks.json) hosting expectations, testing, and common troubleshooting for release/publishing.",
-      "files": [
-        "frontend/docs/PLAY_STORE_PUBLISHING.md"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-app-has-the-required-pwa-metadata-suitable-for-packaging-publishing-confirm-a-web-app-manifest-is-present-and-linked-from-the-html-entrypoint-includes-correct-name-short-name-start-url-display-theme-background-colors-and-includes-required-icon-sizes-if-any-of-these-are-missing-add-update-them-and-make-sure-the-app-still-runs-normally-in-the-browser",
-      "featureTitle": "Ensure the app has the required PWA metadata suitable for packaging/publishing: confirm a web app manifest is present and linked from the HTML entrypoint, includes correct name/short_name, start_url, display, theme/background colors, and includes required icon sizes. If any of these are missing, add/update them and make sure the app still runs normally in the browser.",
+      "featureId": "feature-update-pwa-app-identity-metadata-to-match-the-new-original-game-name-including-frontend-public-manifest-webmanifest-id-name-short-name-description-theme-background-colors-if-needed-and-frontend-index-html-title-meta-description-theme-color-icons-references",
+      "featureTitle": "Update PWA/app identity metadata to match the new original game name, including: frontend/public/manifest.webmanifest (id/name/short_name/description/theme/background colors if needed) and frontend/index.html (title/meta description/theme-color/icons references).",
       "files": [
         "frontend/index.html",
         "frontend/public/manifest.webmanifest"
@@ -52,7 +40,72 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-simple-mobile-friendly-battle-royale-style-game-loop-single-player-suitable-for-android-browsers-on-screen-touch-controls-a-player-character-that-moves-aims-enemies-bots-that-spawn-a-safe-non-graphic-combat-mechanic-e-g-tap-to-shoot-or-auto-shoot-health-score-kills-and-clear-win-lose-conditions-with-start-pause-game-over-flow-preserved",
+      "featureTitle": "Implement a simple, mobile-friendly \"battle royale style\" game loop (single-player) suitable for Android browsers: on-screen touch controls, a player character that moves/aims, enemies/bots that spawn, a safe non-graphic combat mechanic (e.g., tap-to-shoot or auto-shoot), health, score/kills, and clear Win/Lose conditions, with Start/Pause/Game Over flow preserved.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/game/BattleGame.tsx",
+        "frontend/src/game/components/GameOverScreen.tsx",
+        "frontend/src/game/components/Hud.tsx",
+        "frontend/src/game/components/PauseOverlay.tsx",
+        "frontend/src/game/components/StartScreen.tsx",
+        "frontend/src/game/components/TouchControls.tsx",
+        "frontend/src/game/useBattleGame.ts",
+        "frontend/src/game/utils/collision.ts",
+        "frontend/src/game/utils/spawn.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-the-current-construction-truck-gameplay-ui-assets-usage-in-the-game-scene-with-new-original-battle-game-art-assets-stored-as-static-files-under-frontend-public-assets-generated-and-wire-them-into-the-new-game-do-not-serve-images-from-the-backend",
+      "featureTitle": "Replace the current construction-truck gameplay UI assets usage in the game scene with new, original battle-game art assets stored as static files under frontend/public/assets/generated, and wire them into the new game (do not serve images from the backend).",
+      "files": [
+        "frontend/src/game/BattleGame.tsx",
+        "frontend/src/game/TruckGame.tsx",
+        "frontend/src/game/useTruckGame.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-google-play-publishing-documentation-frontend-docs-play-store-publishing-md-so-it-reflects-the-new-original-game-name-identifier-and-required-listing-assets-screenshots-for-the-new-game",
+      "featureTitle": "Update Google Play publishing documentation (frontend/docs/PLAY_STORE_PUBLISHING.md) so it reflects the new original game name, identifier, and required listing assets/screenshots for the new game.",
+      "files": [
+        "frontend/docs/PLAY_STORE_PUBLISHING.md"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
       ],
       "confidence": "high"
     }

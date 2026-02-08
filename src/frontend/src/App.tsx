@@ -1,9 +1,9 @@
-import TruckGame from './game/TruckGame';
+import BattleGame from './game/BattleGame';
 
 function App() {
   return (
     <div className="w-full h-full">
-      <TruckGame />
+      <BattleGame />
     </div>
   );
 }

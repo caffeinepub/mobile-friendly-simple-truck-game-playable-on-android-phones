@@ -1,21 +1,22 @@
 {
-  "name": "Truck Rush",
-  "short_name": "Truck Rush",
-  "description": "Dodge obstacles and drive as far as you can!",
+  "id": "skylance-royale",
+  "name": "Skylance Royale - Battle Arena",
+  "short_name": "Skylance Royale",
+  "description": "Battle bots in the arena! Eliminate 20 enemies to win in this action-packed mobile battle game.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#ea580c",
-  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
   "icons": [
     {
-      "src": "/assets/generated/app-icon-small.dim_192x192.png",
+      "src": "/assets/generated/battle-app-icon-small.dim_192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/generated/app-icon.dim_512x512.png",
+      "src": "/assets/generated/battle-app-icon.dim_512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

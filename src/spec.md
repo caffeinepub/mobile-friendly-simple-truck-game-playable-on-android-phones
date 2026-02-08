@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add clear guidance and supporting assets for publishing the truck game (web/PWA) to the Google Play Store.
+**Goal:** Rebrand the app with an original battle game identity (no “Free Fire” references) and deliver a simple, mobile-friendly single-player battle royale style 2D game loop, plus updated PWA/Play Store metadata and docs for Google Play readiness.
 
 **Planned changes:**
-- Add a new Start screen help section titled “Publish on Google Play” (English) that explains the difference between installing as a PWA in the browser and publishing to the Play Store, and lists high-level steps (TWA wrapper, AAB generation, Play Console upload).
-- Add repo documentation (e.g., `docs/PLAY_STORE_PUBLISHING.md`) with a practical step-by-step checklist for Play Store publishing, required listing assets and where to place them, app identifier/domain naming guidance, and troubleshooting.
-- Verify/add required PWA metadata for packaging: ensure the manifest is present and linked in `frontend/index.html`, includes key fields (name/short_name/start_url/display/theme/background colors), and includes required icon sizes (192x192, 512x512).
+- Replace all “Free Fire” / “Free Fire India” mentions with an original game name and consistent English-only user-facing text across UI, metadata, and docs.
+- Update PWA identity metadata (manifest.webmanifest and index.html) to use the new app name, slug/id, descriptions, colors (if needed), and correct icon references.
+- Implement a simple single-player “battle royale style” 2D game loop with touch-first controls (portrait/landscape), non-graphic combat, HUD (health + score/kills), enemy/bot spawning, and Start/Pause/Game Over/Win flows.
+- Replace construction-themed gameplay visuals by wiring new, original battle-game art assets from frontend/public/assets/generated (no backend-served images).
+- Update frontend/docs/PLAY_STORE_PUBLISHING.md with the new app name/identifier and the required Play Store listing assets (icon, feature graphic, screenshots) using the new filenames.
 
-**User-visible outcome:** On the Start screen, players can read how to install via PWA vs what it takes to publish to Google Play, and the repo includes a clear publishing checklist with the necessary PWA manifest/icon setup for Android packaging.
+**User-visible outcome:** Users can install/open the app as a PWA with the new original branding and play a complete single-player battle game on mobile (touch controls, HUD, win/lose, restart), and the project includes updated Play Store publishing documentation and listing assets for release preparation.

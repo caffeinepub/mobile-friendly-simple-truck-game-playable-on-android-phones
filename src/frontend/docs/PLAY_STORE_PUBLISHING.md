@@ -1,4 +1,4 @@
-# Publishing Truck Rush to Google Play Store
+# Publishing Skylance Royale to Google Play Store
 
 This guide walks you through publishing this Progressive Web App (PWA) to the Google Play Store using a Trusted Web Activity (TWA) wrapper.
 
@@ -18,8 +18,8 @@ This game is built as a Progressive Web App (PWA) that runs in the browser. To p
 All required assets are already generated in `frontend/public/assets/generated/`:
 
 ### App Icons
-- ✅ `app-icon.dim_512x512.png` (512×512) - High-res app icon
-- ✅ `app-icon-small.dim_192x192.png` (192×192) - Standard app icon
+- ✅ `battle-app-icon.dim_512x512.png` (512×512) - High-res app icon
+- ✅ `battle-app-icon-small.dim_192x192.png` (192×192) - Standard app icon
 
 ### Play Store Listing Assets
 - ✅ `play-feature-graphic.dim_1024x500.png` (1024×500) - Feature graphic for store listing
@@ -35,11 +35,15 @@ All required assets are already generated in `frontend/public/assets/generated/`
 3. Verify all icons load correctly
 4. Test the PWA in Chrome on Android to ensure it works properly
 
-## Step 3: Choose a Valid App Identifier
+## Step 3: App Identifier
 
-Your app needs a unique package name (reverse domain format):
+Your app uses the following identifier consistently across PWA metadata:
 
-**Valid format:** `com.yourcompany.truckrush`
+**App ID:** `skylance-royale`
+
+When creating your TWA wrapper, you'll need to choose a package name in reverse domain format:
+
+**Package name format:** `com.yourcompany.skylanceroyale`
 
 **Rules:**
 - Use reverse domain notation (e.g., `com.example.appname`)
@@ -48,11 +52,11 @@ Your app needs a unique package name (reverse domain format):
 - Each segment must start with a letter
 - No spaces, hyphens, or special characters
 
-**Common mistakes to avoid:**
-- ❌ `TRUCK SIMULATOR GAME 2026` (spaces, uppercase)
-- ❌ `truck-game-2026` (hyphens not allowed in package names)
-- ❌ `TruckGame` (needs domain format)
-- ✅ `com.truckgame.rush` (correct format)
+**Examples:**
+- ✅ `com.skylanceroyale.game` (correct format)
+- ✅ `com.yourname.skylanceroyale` (correct format)
+- ❌ `skylance-royale` (hyphens not allowed in package names)
+- ❌ `SKYLANCE ROYALE` (spaces, uppercase)
 
 ## Step 4: Create a TWA Wrapper
 

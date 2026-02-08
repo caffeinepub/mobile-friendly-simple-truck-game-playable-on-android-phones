@@ -55,7 +55,9 @@ export default {
                     3: 'oklch(var(--chart-3))',
                     4: 'oklch(var(--chart-4))',
                     5: 'oklch(var(--chart-5))'
-                }
+                },
+                success: 'oklch(var(--success))',
+                'battle-dark': 'oklch(var(--battle-dark))'
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -66,8 +68,8 @@ export default {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)'
             },
             fontFamily: {
-                sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                display: ['Inter', 'sans-serif']
+                sans: ['Rajdhani', 'Orbitron', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                display: ['Orbitron', 'Rajdhani', 'sans-serif']
             },
             keyframes: {
                 'accordion-down': {

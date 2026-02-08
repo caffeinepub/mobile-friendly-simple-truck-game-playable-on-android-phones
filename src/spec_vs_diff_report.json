@@ -1,50 +1,47 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T00:04:45.043Z",
-  "summary": "Diff adds Google Play publishing documentation, adds a new “Publish on Google Play” help section to the Start screen, and adds/updates PWA manifest metadata (manifest link in index.html plus a manifest file with required fields and icon sizes). Some requested store asset image files and specific identifier-format guidance are not evidenced in the provided diff summary.",
+  "generatedAt": "2026-02-08T00:04:20.233Z",
+  "summary": "Most requested changes for rebranding to an original battle game name (Skylance Royale), updating PWA metadata, implementing a single-player battle-style game loop, wiring generated assets via /assets/generated paths, and updating Play Store publishing docs appear to be implemented. One leftover reference to \"Free Fire India\" remains in project_state.json based on the diff summary.",
   "missing_requirements": [
     {
-      "id": "REQ-8",
-      "requirement": "Doc includes guidance on selecting a valid app identifier/domain naming format (5–50 chars, letters/numbers/hyphens only) to avoid validation errors.",
-      "reason": "The new doc section shown describes Android package name rules (reverse-domain with periods, lowercase, no hyphens) rather than the requested 5–50 character identifier/domain format limited to letters/numbers/hyphens.",
+      "id": "REQ-16",
+      "requirement": "Replace any use of the name \"Free Fire\" / \"Free Fire India\" with an original game name and branding throughout the app (UI copy, metadata, docs).",
+      "reason": "The diff summary shows project_state.json still contains the phrase \"Free Fire India\" in its summary text, which violates the acceptance criterion that no document text contains \"Free Fire\"/\"Free Fire India\".",
       "evidence": [
-        "frontend/docs/PLAY_STORE_PUBLISHING.md"
-      ]
-    },
-    {
-      "requirement": "Provide the required Google Play / PWA asset images (512x512 icon, 192x192 icon, feature graphic 1024x500, two 1080x1920 screenshots) in the repo.",
-      "reason": "The documentation references these files as already generated under `frontend/public/assets/generated/`, and the HTML/manifest reference them, but the diff summary does not show any added PNG asset files, so their presence is not evidenced.",
-      "evidence": [
-        "frontend/docs/PLAY_STORE_PUBLISHING.md",
-        "frontend/public/manifest.webmanifest",
-        "frontend/index.html"
+        "project_state.json"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Repository/project metadata tracking changes (project_state.json updates).",
-      "reason": "BuildRequest focuses on Start screen help text, publishing documentation, and PWA metadata/assets; changes to project tracking/state files are not requested.",
+      "description": "Added/retained an empty placeholder hook file (useQueries.ts) unrelated to the requested battle game/PWA/Play Store changes.",
+      "reason": "BuildRequest does not ask for introducing placeholder query hooks; this appears to be extra scaffolding not tied to REQ-16–REQ-20.",
       "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "description": "Added/modified generated summary file `frontend-file-summaries.txt`.",
-      "reason": "Not requested by the BuildRequest requirements (REQ-7/8/9) and appears to be auxiliary documentation/metadata.",
-      "evidence": [
-        "frontend-file-summaries.txt"
+        "frontend/src/hooks/useQueries.ts"
       ]
     }
   ],
-  "confidence": 0.7,
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/docs/PLAY_STORE_PUBLISHING.md",
     "frontend/index.html",
     "frontend/public/manifest.webmanifest",
+    "frontend/src/App.tsx",
+    "frontend/src/game/BattleGame.tsx",
+    "frontend/src/game/TruckGame.tsx",
+    "frontend/src/game/components/GameOverScreen.tsx",
+    "frontend/src/game/components/Hud.tsx",
+    "frontend/src/game/components/PauseOverlay.tsx",
     "frontend/src/game/components/StartScreen.tsx",
+    "frontend/src/game/components/TouchControls.tsx",
+    "frontend/src/game/useBattleGame.ts",
+    "frontend/src/game/useTruckGame.ts",
+    "frontend/src/game/utils/collision.ts",
+    "frontend/src/game/utils/spawn.ts",
+    "frontend/src/index.css",
+    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }
